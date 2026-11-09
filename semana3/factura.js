@@ -1,5 +1,25 @@
 const readline = require('node:readline/promises');
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const fs = require('node:fs/promises');
+
+function GuardandoEnTexto(pruductosXCantidad,subtotal,impuesto,propina,totalFactura){
+    const ruta = './facturas.txt';
+    const nuevaFactura =
+    `==============================
+    FACTURA
+    ===============================
+    `;
+    for (const producto of pruductosXCantidad){
+        nuevaFactura += `- ${producto.nombre}: ${producto.cantidad} x $${producto.precioUnitario} = $${producto.total}\n`;
+    }
+    nuevaFactura += `
+    Subtotal: $${subtotal}\n
+    Impuesto (10%): $${impuesto}\n
+    Propina  (8%): $${propina}\n
+    Total: $${totalFactura}
+    ================================
+    `;
+}
 
 function CalcularPorcentaje(valor, porcentaje) {
     return (valor * porcentaje) / 100;
@@ -57,7 +77,7 @@ async function main() {
         propina = 0;
     }
     impuesto = CalcularPorcentaje(subtotal, 10);
-    total = subtotal + impuesto + propina;
+    totalFactura = subtotal + impuesto + propina;
     console.log("================================");
     console.log("Factura:");
     console.log("================================");
@@ -67,7 +87,7 @@ async function main() {
     console.log(`Subtotal: $${subtotal}`);
     console.log(`Impuesto (10%): $${impuesto}`);
     console.log(`Propina (8%): $${propina}`);
-    console.log(`Total: $${total}`);
+    console.log(`Total: $${totalFactura}`);
     rl.close();
 
 }
