@@ -1,25 +1,5 @@
 const readline = require('node:readline/promises');
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-const fs = require('node:fs/promises');
-
-function GuardandoEnTexto(pruductosXCantidad,subtotal,impuesto,propina,totalFactura){
-    const ruta = './facturas.txt';
-    const nuevaFactura =
-    `==============================
-    FACTURA
-    ===============================
-    `;
-    for (const producto of pruductosXCantidad){
-        nuevaFactura += `- ${producto.nombre}: ${producto.cantidad} x $${producto.precioUnitario} = $${producto.total}\n`;
-    }
-    nuevaFactura += `
-    Subtotal: $${subtotal}\n
-    Impuesto (10%): $${impuesto}\n
-    Propina  (8%): $${propina}\n
-    Total: $${totalFactura}
-    ================================
-    `;
-}
 
 function CalcularPorcentaje(valor, porcentaje) {
     return (valor * porcentaje) / 100;
@@ -73,7 +53,7 @@ async function main() {
     let respuesta2 = (await rl.question("Desea agregar la propina del 8%? Escriba s(si) o n(no)  ")).toLowerCase().trim();
     if (respuesta2 === "s") {
         propina = CalcularPorcentaje(subtotal, 8);
-    }else{
+    } else {
         propina = 0;
     }
     impuesto = CalcularPorcentaje(subtotal, 10);

@@ -30,7 +30,7 @@ function parqueadero(vehiculo,facturaCC,tiempo){
             }
 
         case "m":
-           if (tiempo <= 0.25 ){
+            if (tiempo <= 0.25 ){
                 respuesta = "El parqueadero es totalmente gratis. Gracias por visitarnos.";
                 break;
             }else{
