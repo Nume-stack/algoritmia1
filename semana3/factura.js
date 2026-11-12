@@ -5,6 +5,19 @@ function CalcularPorcentaje(valor, porcentaje) {
     return (valor * porcentaje) / 100;
 }
 
+function ImprimirFactura (productoXCantidad,subtotal, impuesto, propina, totalFacura){
+    console.log("================================");
+    console.log("Factura:");
+    console.log("================================");
+    for (let producto of productoXCantidad) {
+        console.log(`- ${producto.nombre}: ${producto.cantidad} x $${producto.precioUnitario} = $${producto.total}`);
+    }
+    console.log(`Subtotal: $${subtotal}`);
+    console.log(`Impuesto (10%): $${impuesto}`);
+    console.log(`Propina (8%): $${propina}`);
+    console.log(`Total: $${totalFactura}`);
+}
+
 async function main() {
     let pruductosXCantidad = [];
     let subtotal = 0;
@@ -58,16 +71,9 @@ async function main() {
     }
     impuesto = CalcularPorcentaje(subtotal, 10);
     totalFactura = subtotal + impuesto + propina;
-    console.log("================================");
-    console.log("Factura:");
-    console.log("================================");
-    for (let producto of pruductosXCantidad) {
-        console.log(`- ${producto.nombre}: ${producto.cantidad} x $${producto.precioUnitario} = $${producto.total}`);
-    }
-    console.log(`Subtotal: $${subtotal}`);
-    console.log(`Impuesto (10%): $${impuesto}`);
-    console.log(`Propina (8%): $${propina}`);
-    console.log(`Total: $${totalFactura}`);
+    ImprimirFactura(pruductosXCantidad,subtotal,impuesto,propina,totalFactura)
+    
+
     rl.close();
 
 }

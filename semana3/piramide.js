@@ -8,7 +8,6 @@ async function main() {
         if (!isNaN(filas) && filas > 0) {
 
             for (let i = 1; i <= filas; i++) {
-               
                 const espacios = " ".repeat(filas - i);
                 const bloques = "*".repeat(2 * i - 1);
 
